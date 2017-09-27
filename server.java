@@ -32,7 +32,16 @@ public class JavaServer {
    		 KnockKnockProtocol kkp = new KnockKnockProtocol();//use this to communicate using the knock knock joke
     		outputLine = kkp.processInput(null);
     		out.println(outputLine);//printing the output from the server and the kpp object that is abstrated
-	}                   
+		
+       		  file = new File ("test.dat");
+         	  if (! file.exists() )
+             	{
+             		file.createNewFile();//adding the ability to make a file for the server and not have it deleted when the thread finished
+        	 }
+        	 System.out.println("File Created");
+	}
+    }
+	                   
  
   public static void main ( String[] args ) {    
     try ( ServerSocket ss = new ServerSocket(port) ) {
