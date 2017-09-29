@@ -40,8 +40,27 @@ public class JavaServer {
         	 }
         	 System.out.println("File Created");
 	}
-    }
-	                   
+      import java.io.*;
+     public static int BYTES_PER_LINE = 4;
+         public void doit() {
+         int ch, cv, bit, cnt;
+             try {
+                 for(cnt = 0, ch = brIn.read(); ch >= 0; ch = brIn.read()) {
+                 cv = ((int)ch & 0x00ff);
+                     for(bit = 7; bit >= 0; bit--) {
+                     if ((cv & (2 << bit)) > 0)
+                     psOut.print("1");
+                     else
+                     psOut.print("0");
+                 }
+                 cnt++;
+                 if ((cnt % BYTES_PER_LINE) == 0)//added the byte conversion if needed by the user
+                 psOut.println("");
+             }
+         } catch (IOException e) { }
+         return;
+     }
+                   
  
   public static void main ( String[] args ) {    
     try ( ServerSocket ss = new ServerSocket(port) ) {
